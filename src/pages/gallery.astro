@@ -1,0 +1,298 @@
+---
+import PublicLayout from "@layouts/PublicLayout.astro";
+
+let galleryPhotos = [
+  {
+    src: "/images/church-1.jpg",
+    title: "Parish Celebration",
+    category: "Feast Day",
+    date: "2026-02-02",
+  },
+  {
+    src: "/images/church-2.jpg",
+    title: "Church Event",
+    category: "Community",
+    date: "2026-01-28",
+  },
+  {
+    src: "/images/church-3.jpg",
+    title: "Community Gathering",
+    category: "Parish Life",
+    date: "2026-01-20",
+  },
+];
+
+// Sort latest first (good UX for gallery)
+galleryPhotos = galleryPhotos.sort(
+  (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+);
+
+const categories = [
+  "All",
+  "Feast Day",
+  "Christmas",
+  "Easter",
+  "Community",
+  "Parish Life",
+  "Youth Events",
+];
+---
+
+<PublicLayout
+  title="Gallery"
+  description="View parish gallery photos from feasts, celebrations, Masses and community gatherings at St. Teresa of Kolkata Church, Paldane."
+>
+  <!-- HERO -->
+  <section class="relative min-h-[55vh] flex items-center justify-center overflow-hidden pt-28">
+    <div class="absolute inset-0 bg-gradient-to-br from-charcoal-950 via-charcoal-900 to-primary-900"></div>
+    <div class="absolute inset-0 bg-black/35"></div>
+
+    <div class="relative z-10 max-w-5xl px-6 text-center">
+      <div
+        class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/10 border border-white/20 shadow-sm backdrop-blur mb-6"
+      >
+        <span class="w-2 h-2 rounded-full bg-primary-400"></span>
+        <span class="text-sm font-medium text-white/90">
+          Memories & Celebrations
+        </span>
+      </div>
+
+      <h1 class="font-serif text-5xl md:text-7xl font-bold text-white mb-6">
+        Parish Gallery
+      </h1>
+
+      <div class="w-24 h-[2px] bg-white mx-auto mb-6 rounded-full"></div>
+
+      <p class="text-white/85 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
+        Photos from parish feasts, celebrations, special Masses, and community gatherings
+        at St. Teresa of Kolkata Church, Paldane.
+      </p>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4 max-w-6xl">
+
+      <!-- INTRO + FILTERS -->
+      <div class="rounded-3xl border border-gray-200 bg-gray-50 p-10 shadow-sm mb-14">
+        <h2 class="font-serif text-4xl font-bold text-charcoal-900 mb-4">
+          Photo Collection
+        </h2>
+
+        <p class="text-charcoal-700 text-lg leading-relaxed max-w-4xl mb-8">
+          This gallery will be updated regularly by the parish office.
+          In the future, this section will support albums such as Feast Day, Christmas, Easter,
+          Youth Events, and other parish celebrations.
+        </p>
+
+        <!-- CATEGORY FILTER -->
+        <div class="flex flex-wrap gap-3">
+          {categories.map((cat) => (
+            <button
+              class={`gallery-filter px-5 py-2 rounded-full border border-gray-200 text-sm font-semibold shadow-sm hover:shadow-md transition
+              ${cat === "All" ? "bg-primary-600 text-white" : "bg-white text-charcoal-700 hover:bg-primary-50 hover:text-primary-700"}`}
+              data-category={cat}
+              aria-label={`Filter category ${cat}`}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- GALLERY GRID -->
+      <div id="galleryGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {galleryPhotos.map((photo) => (
+          <button
+            class="gallery-card group text-left overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm hover:shadow-lg transition focus:outline-none focus:ring-2 focus:ring-primary-500"
+            data-src={photo.src}
+            data-title={photo.title}
+            data-category={photo.category}
+            data-date={photo.date}
+            aria-label={`Open photo ${photo.title}`}
+          >
+            <div class="relative overflow-hidden">
+              <img
+                src={photo.src}
+                alt={photo.title}
+                class="w-full h-72 object-cover group-hover:scale-105 transition duration-500"
+                loading="lazy"
+              />
+
+              <!-- Category Tag -->
+              <div class="absolute top-4 left-4">
+                <span class="px-4 py-1 rounded-full text-xs font-semibold bg-black/55 text-white backdrop-blur border border-white/20">
+                  {photo.category}
+                </span>
+              </div>
+
+              <!-- Subtle overlay -->
+              <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition"></div>
+            </div>
+
+            <div class="p-6">
+              <h3 class="font-serif text-xl font-bold text-charcoal-900 mb-2">
+                {photo.title}
+              </h3>
+
+              <p class="text-charcoal-600 text-sm leading-relaxed">
+                Click to view the photo in full size.
+              </p>
+
+              <p class="mt-4 text-xs text-charcoal-500">
+                Posted on: {photo.date}
+              </p>
+            </div>
+          </button>
+        ))}
+      </div>
+
+      <!-- FUTURE NOTE -->
+      <div class="mt-16 rounded-3xl border border-gray-200 bg-gray-50 p-10 shadow-sm">
+        <h3 class="font-serif text-3xl font-bold text-charcoal-900 mb-4">
+          Future Upgrade
+        </h3>
+
+        <p class="text-charcoal-700 text-lg leading-relaxed max-w-5xl">
+          Soon, this gallery will be upgraded with albums, filters, and an admin upload system
+          so parish staff can easily add new photos without editing code.
+          The admin panel will support multiple images per post (Facebook-style), captions, and category tags.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- LIGHTBOX MODAL -->
+  <div
+    id="lightbox"
+    class="fixed inset-0 hidden z-[9999] bg-black/75 backdrop-blur-md flex items-center justify-center p-6"
+  >
+    <div class="relative max-w-5xl w-full rounded-3xl overflow-hidden shadow-2xl bg-black">
+
+      <!-- Close Button -->
+      <button
+        id="closeLightbox"
+        class="absolute top-5 right-5 z-10 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-white text-sm hover:bg-white/20 transition"
+        aria-label="Close gallery preview"
+      >
+        ✕ Close
+      </button>
+
+      <!-- Image -->
+      <img
+        id="lightboxImg"
+        src=""
+        alt="Gallery Image"
+        class="w-full max-h-[80vh] object-contain bg-black"
+      />
+
+      <!-- Caption -->
+      <div class="p-6 bg-black/70 text-white">
+        <h3 id="lightboxTitle" class="font-serif text-2xl font-bold mb-1"></h3>
+        <p id="lightboxCategory" class="text-white/80 text-sm"></p>
+        <p id="lightboxDate" class="text-white/60 text-xs mt-2"></p>
+      </div>
+    </div>
+  </div>
+</PublicLayout>
+
+<script>
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightboxImg");
+  const lightboxTitle = document.getElementById("lightboxTitle");
+  const lightboxCategory = document.getElementById("lightboxCategory");
+  const lightboxDate = document.getElementById("lightboxDate");
+  const closeBtn = document.getElementById("closeLightbox");
+
+  const galleryCards = document.querySelectorAll(".gallery-card");
+  const filterButtons = document.querySelectorAll(".gallery-filter");
+
+  function formatDate(dateStr) {
+    try {
+      const d = new Date(dateStr);
+      return d.toLocaleDateString("en-IN", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+      });
+    } catch (err) {
+      return dateStr;
+    }
+  }
+
+  function openLightbox({ src, title, category, date }) {
+    lightboxImg.src = src;
+    lightboxTitle.textContent = title;
+    lightboxCategory.textContent = category;
+    lightboxDate.textContent = `Posted on: ${formatDate(date)}`;
+
+    lightbox.classList.remove("hidden");
+    document.body.style.overflow = "hidden"; // prevent background scroll
+  }
+
+  function closeLightbox() {
+    lightbox.classList.add("hidden");
+    lightboxImg.src = "";
+    document.body.style.overflow = ""; // restore scroll
+  }
+
+  // LIGHTBOX OPEN
+  galleryCards.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const src = btn.getAttribute("data-src");
+      const title = btn.getAttribute("data-title");
+      const category = btn.getAttribute("data-category");
+      const date = btn.getAttribute("data-date");
+
+      openLightbox({ src, title, category, date });
+    });
+  });
+
+  // CLOSE LIGHTBOX
+  closeBtn.addEventListener("click", closeLightbox);
+
+  lightbox.addEventListener("click", (e) => {
+    if (e.target === lightbox) {
+      closeLightbox();
+    }
+  });
+
+  // ESC KEY CLOSE
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !lightbox.classList.contains("hidden")) {
+      closeLightbox();
+    }
+  });
+
+  // FILTER FUNCTION
+  filterButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const selected = btn.getAttribute("data-category");
+
+      // reset active styles
+      filterButtons.forEach((b) => {
+        b.classList.remove("bg-primary-600", "text-white");
+        b.classList.add("bg-white", "text-charcoal-700");
+      });
+
+      // set active style
+      btn.classList.remove("bg-white", "text-charcoal-700");
+      btn.classList.add("bg-primary-600", "text-white");
+
+      galleryCards.forEach((card) => {
+        const category = card.getAttribute("data-category");
+
+        if (selected === "All" || selected === category) {
+          card.classList.remove("hidden");
+        } else {
+          card.classList.add("hidden");
+        }
+      });
+    });
+  });
+
+  // Default "All" filter active on load
+  document.querySelector('[data-category="All"]')?.click();
+</script>

@@ -1,0 +1,68 @@
+---
+export const prerender = false;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Login | Paldane Parish</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <script type="module">
+      import { supabase } from '/src/lib/supabase.ts';
+
+      window.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('login-form');
+        const msg = document.getElementById('msg');
+
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          msg.textContent = 'Signing in...';
+
+          const email = document.getElementById('email').value;
+          const password = document.getElementById('password').value;
+
+          const { error } = await supabase.auth.signInWithPassword({ email, password });
+
+          if (error) {
+            msg.textContent = error.message;
+            return;
+          }
+
+          window.location.href = '/admin';
+        });
+      });
+    </script>
+  </head>
+
+  <body class="font-sans bg-gray-50 min-h-screen flex items-center justify-center px-4">
+    <div class="w-full max-w-md bg-white border border-gray-200 rounded-2xl p-8 shadow-sm">
+      <div class="text-center mb-6">
+        <img src="/images/logo.png" class="h-16 w-16 mx-auto mb-4" alt="Logo" />
+        <h1 class="font-serif text-3xl font-bold">Admin Login</h1>
+        <p class="text-charcoal-600 text-sm mt-2">St. Teresa of Kolkata Church, Paldane</p>
+      </div>
+
+      <form id="login-form" class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium mb-2">Email</label>
+          <input id="email" type="email" required class="w-full border border-gray-300 rounded-lg px-4 py-3" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-2">Password</label>
+          <input id="password" type="password" required class="w-full border border-gray-300 rounded-lg px-4 py-3" />
+        </div>
+        <button class="w-full py-3 rounded-lg bg-gold-600 hover:bg-gold-700 text-white font-medium transition">
+          Sign In
+        </button>
+        <p id="msg" class="text-center text-sm text-red-600"></p>
+      </form>
+    </div>
+  </body>
+</html>

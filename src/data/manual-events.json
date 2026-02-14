@@ -1,0 +1,16 @@
+[
+  {
+    "id": "evt-001",
+    "date": "2026-02-15",
+    "type": "parish-event",
+    "title": "Youth Meeting",
+    "description": "ICYM monthly meeting after evening mass."
+  },
+  {
+    "id": "evt-002",
+    "date": "2026-02-20",
+    "type": "ward-duty",
+    "title": "Ward 3 - Liturgy Duty",
+    "description": "Ward 3 responsible for readings and offertory."
+  }
+]

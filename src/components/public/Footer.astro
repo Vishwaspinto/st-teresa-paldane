@@ -1,0 +1,137 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-charcoal-950 text-white">
+  <div class="container mx-auto px-4 py-14">
+
+    <!-- TOP GRID -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+
+      <!-- BRAND -->
+      <div>
+        <div class="flex items-center gap-4 mb-5">
+          <img
+            src="/images/logo.png"
+            class="h-12 w-12 rounded-full bg-white shadow-md"
+            alt="St. Teresa of Kolkata Church Logo"
+          />
+
+          <div class="leading-tight">
+            <div class="font-serif font-semibold text-xl">
+              St. Teresa of Kolkata
+            </div>
+            <div class="text-sm text-gray-400">
+              Paldane Parish
+            </div>
+          </div>
+        </div>
+
+        <p class="text-gray-400 text-sm leading-relaxed max-w-sm">
+          Official parish website of St. Teresa of Kolkata Church, Paldane.
+          Mass timings, announcements, parish calendar, gallery, and updates all in one place.
+        </p>
+      </div>
+
+      <!-- QUICK LINKS -->
+      <div>
+        <h3 class="font-serif font-semibold text-xl mb-5">
+          Quick Links
+        </h3>
+
+        <ul class="space-y-3 text-sm">
+          <li>
+            <a href="/mass-timings" class="footer-link">Mass Timings</a>
+          </li>
+          <li>
+            <a href="/announcements" class="footer-link">Announcements</a>
+          </li>
+          <li>
+            <a href="/calendar" class="footer-link">Parish Calendar</a>
+          </li>
+          <li>
+            <a href="/gallery" class="footer-link">Gallery</a>
+          </li>
+          <li>
+            <a href="/clergy" class="footer-link">Clergy</a>
+          </li>
+          <li>
+            <a href="/contact" class="footer-link">Contact</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- CONTACT -->
+      <div>
+        <h3 class="font-serif font-semibold text-xl mb-5">
+          Parish Office
+        </h3>
+
+        <div class="space-y-4 text-sm text-gray-400 leading-relaxed">
+
+          <p>
+            <strong class="text-white">Location:</strong><br />
+            St. Teresa of Kolkata Church,<br />
+            Paldane Parish, Mangalore,<br />
+            Karnataka, India - 575028
+          </p>
+
+          <p>
+            <strong class="text-white">Email:</strong><br />
+            <a
+              href="mailto:paldanebtkc@gmail.com"
+              class="footer-link"
+            >
+              paldanebtkc@gmail.com
+            </a>
+          </p>
+
+          <p>
+            <strong class="text-white">Phone:</strong><br />
+            <a href="tel:+918277939391" class="footer-link">
+              +91 82779 39391
+            </a>
+            <br />
+            <a href="tel:+918242272084" class="footer-link">
+              0824 - 2272084
+            </a>
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- DIVIDER -->
+    <div class="border-t border-white/10 mt-14 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
+
+      <p class="text-center md:text-left">
+        © {year} St. Teresa of Kolkata Church, Paldane. All rights reserved.
+      </p>
+
+      <p class="text-center md:text-right">
+        Designed & Developed by
+        <a
+          class="text-primary-300 hover:text-primary-200 font-semibold transition"
+          href="https://aethel.co.in"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Aethel
+        </a>
+      </p>
+
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer-link {
+    color: rgba(156, 163, 175, 1);
+    transition: all 0.25s ease;
+  }
+
+  .footer-link:hover {
+    color: rgba(191, 219, 254, 1);
+    text-decoration: underline;
+  }
+</style>

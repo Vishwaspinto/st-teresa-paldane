@@ -1,0 +1,56 @@
+---
+export const prerender = false;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard | Paldane Parish</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <script type="module">
+      import { supabase } from '/src/lib/supabase.ts';
+
+      window.addEventListener('DOMContentLoaded', async () => {
+        const { data } = await supabase.auth.getSession();
+        if (!data.session) {
+          window.location.href = '/admin/login';
+        }
+
+        document.getElementById('logout').addEventListener('click', async () => {
+          await supabase.auth.signOut();
+          window.location.href = '/admin/login';
+        });
+      });
+    </script>
+  </head>
+
+  <body class="font-sans bg-gray-50 min-h-screen">
+    <div class="max-w-5xl mx-auto px-4 py-10">
+      <div class="flex items-center justify-between mb-8">
+        <h1 class="font-serif text-4xl font-bold">Admin Dashboard</h1>
+        <button id="logout" class="px-5 py-2 rounded-lg bg-red-600 hover:bg-red-700 text-white font-medium">
+          Logout
+        </button>
+      </div>
+
+      <div class="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm">
+        <p class="text-charcoal-700">
+          Welcome! This is the V1 admin portal. In V2 we will add full CRUD panels (Announcements, Events, Gallery, Users).
+        </p>
+
+        <div class="mt-6 flex gap-4">
+          <a href="/" class="px-6 py-3 bg-gold-600 hover:bg-gold-700 text-white rounded-lg font-medium transition">
+            View Website
+          </a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

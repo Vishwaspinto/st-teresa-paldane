@@ -1,0 +1,112 @@
+---
+import Navbar from "../components/public/Navbar.astro";
+import Footer from "../components/public/Footer.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  title,
+  description = "Official website of St. Teresa of Kolkata Church, Paldane. Mass timings, announcements, parish calendar, gallery, clergy, and parish updates.",
+  image = "/images/logo.png",
+} = Astro.props;
+
+const fullTitle = `${title} | St. Teresa of Kolkata Church, Paldane`;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- BASIC META -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+
+    <!-- CANONICAL -->
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- THEME COLOR -->
+    <meta name="theme-color" content="#0b5ed7" />
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="/images/logo.png" />
+
+    <!-- OPEN GRAPH (WHATSAPP / FB PREVIEW) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={new URL(image, Astro.site)} />
+
+    <!-- TWITTER PREVIEW -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(image, Astro.site)} />
+
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body class="font-sans bg-slate-50 text-charcoal-900 antialiased">
+    <!-- NAVBAR -->
+    <Navbar />
+
+    <!-- MAIN CONTENT -->
+    <main class="min-h-screen">
+      <slot />
+    </main>
+
+    <!-- FOOTER -->
+    <Footer />
+  </body>
+</html>
+
+<style is:global>
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", system-ui, sans-serif;
+    background: #f8fafc;
+    color: #111827;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: "Playfair Display", Georgia, serif;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  a,
+  button {
+    transition: all 0.2s ease;
+  }
+
+  .container {
+    max-width: 1200px;
+  }
+</style>

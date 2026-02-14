@@ -1,0 +1,175 @@
+---
+import PublicLayout from "@layouts/PublicLayout.astro";
+---
+
+<PublicLayout
+  title="Mass Timings"
+  description="View Holy Mass timings, catechism schedule, adoration timings and parish service hours for St. Teresa of Kolkata Church, Paldane."
+>
+  <!-- HERO -->
+  <section class="relative min-h-[55vh] flex items-center justify-center overflow-hidden pt-28">
+    <div class="absolute inset-0 bg-gradient-to-br from-charcoal-950 via-charcoal-900 to-primary-900"></div>
+    <div class="absolute inset-0 bg-black/35"></div>
+
+    <div class="relative z-10 max-w-5xl px-6 text-center">
+      <div
+        class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/10 border border-white/20 shadow-sm backdrop-blur mb-6"
+      >
+        <span class="w-2 h-2 rounded-full bg-primary-400"></span>
+        <span class="text-sm font-medium text-white/90">
+          Parish Schedule
+        </span>
+      </div>
+
+      <h1 class="font-serif text-5xl md:text-7xl font-bold text-white mb-6">
+        Holy Mass Timings
+      </h1>
+
+      <div class="w-24 h-[2px] bg-white mx-auto mb-6 rounded-full"></div>
+
+      <p class="text-white/85 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
+        Below is the regular Holy Mass schedule for St. Teresa of Kolkata Church, Paldane.
+        Timings may vary on feast days and special occasions.
+      </p>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4 max-w-6xl">
+
+      <!-- INTRO CARD -->
+      <div class="rounded-3xl border border-gray-200 bg-gray-50 p-10 shadow-sm mb-14">
+        <h2 class="font-serif text-4xl font-bold text-charcoal-900 mb-4">
+          Regular Mass Schedule
+        </h2>
+
+        <p class="text-charcoal-700 text-lg leading-relaxed max-w-4xl">
+          Please refer to the timings below for weekday Masses, Sunday Mass schedules,
+          catechism classes, and monthly adoration.
+        </p>
+      </div>
+
+      <!-- PREMIUM GRID -->
+      <div class="grid lg:grid-cols-2 gap-8">
+
+        <!-- WEEKDAYS -->
+        <div class="rounded-3xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition overflow-hidden">
+          <div class="p-10">
+            <h2 class="font-serif text-3xl font-bold text-charcoal-900 mb-4">
+              Weekdays
+            </h2>
+
+            <p class="text-charcoal-700 text-lg leading-relaxed">
+              <strong>Monday to Saturday:</strong>
+              <span class="text-primary-600 font-semibold"> 6:30 AM</span>
+            </p>
+
+            <div class="mt-6 text-sm text-charcoal-500">
+              Regular morning Mass schedule.
+            </div>
+          </div>
+        </div>
+
+        <!-- SATURDAY EVENING -->
+        <div class="rounded-3xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition overflow-hidden">
+          <div class="p-10">
+            <h2 class="font-serif text-3xl font-bold text-charcoal-900 mb-4">
+              Saturday Evening
+            </h2>
+
+            <p class="text-charcoal-700 text-lg leading-relaxed">
+              <strong>4:45 PM:</strong> Nityadar Mary’s Novena <br />
+              <strong>5:00 PM:</strong>
+              <span class="text-primary-600 font-semibold"> Holy Mass</span>
+            </p>
+
+            <div class="mt-6 text-sm text-charcoal-500">
+              Novena begins before the evening Mass.
+            </div>
+          </div>
+        </div>
+
+        <!-- SUNDAY -->
+        <div class="rounded-3xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition overflow-hidden lg:col-span-2">
+          <div class="p-10">
+            <h2 class="font-serif text-3xl md:text-4xl font-bold text-charcoal-900 mb-6">
+              Sunday Schedule
+            </h2>
+
+            <div class="grid md:grid-cols-3 gap-6">
+              <div class="rounded-2xl bg-gray-50 border border-gray-200 p-6">
+                <div class="text-sm uppercase tracking-wide text-charcoal-500 mb-2">
+                  Holy Mass
+                </div>
+                <div class="text-2xl font-semibold text-primary-700">
+                  7:00 AM
+                </div>
+              </div>
+
+              <div class="rounded-2xl bg-gray-50 border border-gray-200 p-6">
+                <div class="text-sm uppercase tracking-wide text-charcoal-500 mb-2">
+                  Catechism Class
+                </div>
+                <div class="text-2xl font-semibold text-primary-700">
+                  8:30 AM
+                </div>
+              </div>
+
+              <div class="rounded-2xl bg-gray-50 border border-gray-200 p-6">
+                <div class="text-sm uppercase tracking-wide text-charcoal-500 mb-2">
+                  Children’s Mass
+                </div>
+                <div class="text-2xl font-semibold text-primary-700">
+                  9:30 AM
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-6 text-charcoal-600 text-sm leading-relaxed">
+              Sunday is the main parish gathering day. Families and children are encouraged to attend.
+            </div>
+          </div>
+        </div>
+
+        <!-- ADORATION -->
+        <div class="rounded-3xl border border-gray-200 bg-gradient-to-br from-primary-50 to-white shadow-sm hover:shadow-md transition overflow-hidden lg:col-span-2">
+          <div class="p-10">
+            <h2 class="font-serif text-3xl md:text-4xl font-bold text-charcoal-900 mb-4">
+              Adoration
+            </h2>
+
+            <p class="text-charcoal-700 text-lg leading-relaxed">
+              <strong>First Saturday & First Sunday of every month:</strong><br />
+              Adoration is held <span class="font-semibold text-primary-700">after each Mass</span>.
+            </p>
+
+            <div class="mt-6 text-sm text-charcoal-600">
+              A special time of prayer and devotion for the parish community.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NOTE BOX -->
+      <div class="mt-16 rounded-3xl border border-gray-200 bg-gray-50 p-10 shadow-sm">
+        <h3 class="font-serif text-3xl font-bold text-charcoal-900 mb-4">
+          Important Note
+        </h3>
+
+        <p class="text-charcoal-700 leading-relaxed text-lg max-w-5xl">
+          Timings may change on feast days or special occasions.
+          Please check the
+          <a
+            href="/announcements"
+            class="text-primary-700 font-semibold hover:underline"
+          >
+            Announcements
+          </a>
+          section regularly for updates.
+        </p>
+      </div>
+
+    </div>
+  </section>
+</PublicLayout>

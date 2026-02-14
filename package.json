@@ -1,0 +1,36 @@
+{
+  "name": "st-teresa-paldane-v1",
+  "version": "1.0.0",
+  "description": "St. Teresa of Kolkata Church, Paldane - Official Website (V1)",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "format": "prettier --write .",
+    "audit": "npm audit --audit-level=moderate"
+  },
+  "dependencies": {
+    "@astrojs/netlify": "^6.6.4",
+    "@astrojs/react": "^4.4.2",
+    "@astrojs/tailwind": "^5.1.2",
+    "@supabase/supabase-js": "^2.45.4",
+    "astro": "^5.17.2",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
+    "gsap": "^3.12.5",
+    "lucide-react": "^0.454.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwindcss": "^3.4.14"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "prettier": "^3.3.3",
+    "prettier-plugin-astro": "^0.14.1",
+    "typescript": "^5.6.3"
+  }
+}
