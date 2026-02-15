@@ -28,12 +28,11 @@ const navLinks = [
           class="h-11 w-11 rounded-full shadow-md bg-white flex-shrink-0"
         />
 
-        <!-- Visible on mobile now -->
-        <div class="leading-tight text-white min-w-0">
-          <div class="font-serif font-semibold text-sm md:text-base truncate">
+        <div class="leading-tight min-w-0 logo-text">
+          <div class="font-serif font-semibold text-sm md:text-base truncate logo-title">
             St. Teresa of Kolkata
           </div>
-          <div class="text-[11px] md:text-xs opacity-75 truncate">
+          <div class="text-[11px] md:text-xs truncate logo-subtitle">
             Paldane Parish
           </div>
         </div>
@@ -90,7 +89,6 @@ const navLinks = [
 </nav>
 
 <style>
-  /* Floating wrapper */
   .navbar-wrapper {
     position: fixed;
     top: 18px;
@@ -123,7 +121,6 @@ const navLinks = [
     backdrop-filter: blur(18px);
     border: 1px solid rgba(255, 255, 255, 0.18);
     box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
-    color: white;
     transition: all 0.35s ease;
   }
 
@@ -131,7 +128,24 @@ const navLinks = [
     background: rgba(242, 247, 255, 0.95);
     border: 1px solid rgba(0, 0, 0, 0.08);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Logo colors (dark mode default) */
+  .logo-title {
+    color: white;
+  }
+
+  .logo-subtitle {
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  /* Logo colors when scrolled */
+  .navbar-inner.scrolled .logo-title {
     color: #111;
+  }
+
+  .navbar-inner.scrolled .logo-subtitle {
+    color: rgba(20, 20, 20, 0.7);
   }
 
   .nav-item {
@@ -223,11 +237,7 @@ const navLinks = [
   }
 
   function toggleMenu() {
-    if (mobileMenu?.classList.contains("hidden")) {
-      openMenu();
-    } else {
-      closeMenu();
-    }
+    mobileMenu?.classList.contains("hidden") ? openMenu() : closeMenu();
   }
 
   mobileBtn?.addEventListener("click", (e) => {
@@ -247,8 +257,6 @@ const navLinks = [
   });
 
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-      closeMenu();
-    }
+    if (e.key === "Escape") closeMenu();
   });
 </script>
