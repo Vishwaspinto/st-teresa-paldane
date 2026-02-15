@@ -4,7 +4,7 @@ import PublicLayout from "@layouts/PublicLayout.astro";
 
 <PublicLayout
   title="Home"
-  description="Official website of St. Teresa of Kolkata Church, Paldane. View Mass timings, parish announcements, calendar updates, clergy details and parish gallery."
+  description="Official website of St. Teresa of Kolkata Church, Paldane, Mangalore. Find Mass timings, parish announcements, liturgical calendar, clergy information and parish updates."
 >
   <!-- HERO VIDEO SECTION -->
   <section class="relative min-h-[110vh] md:min-h-[100vh] flex items-center justify-center overflow-hidden">
@@ -16,16 +16,14 @@ import PublicLayout from "@layouts/PublicLayout.astro";
       playsinline
       preload="metadata"
       poster="/images/church-1.jpg"
-      aria-label="Parish Hero Video"
+      aria-label="St. Teresa of Kolkata Church Parish Video"
     >
       <source src="/videos/hero.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
 
-    <!-- Premium Overlay -->
+    <!-- Overlay -->
     <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/30 to-black/80"></div>
-
-    <!-- Subtle Blur Layer -->
     <div class="absolute inset-0 backdrop-blur-[1px]"></div>
 
     <!-- Hero Content -->
@@ -40,15 +38,13 @@ import PublicLayout from "@layouts/PublicLayout.astro";
         St. Teresa of Kolkata Church
       </h1>
 
-      <!-- White line -->
       <div class="w-24 h-[3px] bg-white/90 mx-auto mb-6 rounded-full shadow-sm"></div>
 
       <p class="text-white/85 text-lg md:text-xl mb-10 leading-relaxed drop-shadow-lg">
-        Welcome to the official parish website of Paldane.
+        Welcome to the official website of St. Teresa of Kolkata Church, Paldane.
       </p>
 
       <div class="flex flex-wrap justify-center gap-4">
-        <!-- Primary CTA -->
         <a
           href="/mass-timings"
           class="px-8 py-4 rounded-full bg-primary-600 text-white font-semibold transition hover:bg-primary-700 hover:scale-[1.03] shadow-xl"
@@ -73,7 +69,7 @@ import PublicLayout from "@layouts/PublicLayout.astro";
     </div>
   </section>
 
-  <!-- NOTICE BOARD BANNER -->
+  <!-- NOTICE BOARD -->
   <section class="bg-white py-12 border-b border-gray-100">
     <div class="container mx-auto px-4">
       <div
@@ -83,7 +79,7 @@ import PublicLayout from "@layouts/PublicLayout.astro";
           Notice Board
         </h2>
         <p class="text-charcoal-700 leading-relaxed">
-          Important parish announcements, feast-day updates, and upcoming notices will be displayed here.
+          Stay informed with important parish notices, feast-day celebrations, and community updates.
         </p>
       </div>
     </div>
@@ -100,9 +96,7 @@ import PublicLayout from "@layouts/PublicLayout.astro";
             Mass Timings
           </h3>
           <p class="text-charcoal-700 leading-relaxed mb-5">
-            <strong>Mon – Sat:</strong> 6:30 AM <br />
-            <strong>Saturday:</strong> 4:45 PM Novena, 5:00 PM Mass <br />
-            <strong>Sunday:</strong> 7:00 AM & 9:30 AM
+            View regular weekday, weekend, and special feast-day Mass schedules.
           </p>
           <a href="/mass-timings" class="text-primary-600 font-semibold hover:underline">
             View Full Schedule →
@@ -128,7 +122,7 @@ import PublicLayout from "@layouts/PublicLayout.astro";
             Parish Calendar
           </h3>
           <p class="text-charcoal-700 leading-relaxed mb-5">
-            Upcoming masses, novenas, parish celebrations, meetings, and catechism activities will be listed here.
+            Explore upcoming masses, novenas, parish celebrations, meetings, and catechism activities.
           </p>
           <a href="/calendar" class="text-primary-600 font-semibold hover:underline">
             View Calendar →
@@ -153,33 +147,15 @@ import PublicLayout from "@layouts/PublicLayout.astro";
 
       <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
         <div class="aspect-[4/3] rounded-2xl overflow-hidden shadow-lg">
-          <img
-            src="/images/church-1.jpg"
-            class="w-full h-full object-cover hover:scale-105 transition duration-500"
-            alt="Church Exterior"
-            loading="lazy"
-            decoding="async"
-          />
+          <img src="/images/church-1.jpg" class="w-full h-full object-cover hover:scale-105 transition duration-500" alt="Church Exterior" loading="lazy" />
         </div>
 
         <div class="aspect-[4/3] rounded-2xl overflow-hidden shadow-lg">
-          <img
-            src="/images/church-2.jpg"
-            class="w-full h-full object-cover hover:scale-105 transition duration-500"
-            alt="Church Interior"
-            loading="lazy"
-            decoding="async"
-          />
+          <img src="/images/church-2.jpg" class="w-full h-full object-cover hover:scale-105 transition duration-500" alt="Church Interior" loading="lazy" />
         </div>
 
         <div class="aspect-[4/3] rounded-2xl overflow-hidden shadow-lg">
-          <img
-            src="/images/church-3.jpg"
-            class="w-full h-full object-cover hover:scale-105 transition duration-500"
-            alt="Church Altar"
-            loading="lazy"
-            decoding="async"
-          />
+          <img src="/images/church-3.jpg" class="w-full h-full object-cover hover:scale-105 transition duration-500" alt="Church Altar" loading="lazy" />
         </div>
       </div>
 

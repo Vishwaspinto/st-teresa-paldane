@@ -1,56 +1,109 @@
 ---
-export const prerender = false;
+import AdminLayout from "@layouts/AdminLayout.astro";
+
+const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
+const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Dashboard | Paldane Parish</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;600&display=swap"
-      rel="stylesheet"
-    />
-    <script type="module">
-      import { supabase } from '/src/lib/supabase.ts';
+<AdminLayout title="Dashboard">
 
-      window.addEventListener('DOMContentLoaded', async () => {
-        const { data } = await supabase.auth.getSession();
-        if (!data.session) {
-          window.location.href = '/admin/login';
-        }
+  <section class="min-h-screen flex items-center justify-center px-6">
 
-        document.getElementById('logout').addEventListener('click', async () => {
-          await supabase.auth.signOut();
-          window.location.href = '/admin/login';
-        });
-      });
-    </script>
-  </head>
+    <div class="w-full max-w-3xl bg-white/95 backdrop-blur rounded-3xl shadow-2xl p-10 text-charcoal-900">
 
-  <body class="font-sans bg-gray-50 min-h-screen">
-    <div class="max-w-5xl mx-auto px-4 py-10">
-      <div class="flex items-center justify-between mb-8">
-        <h1 class="font-serif text-4xl font-bold">Admin Dashboard</h1>
-        <button id="logout" class="px-5 py-2 rounded-lg bg-red-600 hover:bg-red-700 text-white font-medium">
+      <div class="flex justify-between items-center mb-8">
+        <div>
+          <h1 class="font-serif text-3xl font-semibold">
+            Admin Dashboard
+          </h1>
+          <p id="roleText" class="text-sm text-gray-500 mt-1">
+            Checking permissions...
+          </p>
+        </div>
+
+        <button
+          id="logoutBtn"
+          class="px-5 py-2 rounded-xl bg-red-500 text-white font-semibold hover:bg-red-600 transition hidden"
+        >
           Logout
         </button>
       </div>
 
-      <div class="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm">
-        <p class="text-charcoal-700">
-          Welcome! This is the V1 admin portal. In V2 we will add full CRUD panels (Announcements, Events, Gallery, Users).
-        </p>
+      <div id="contentArea" class="grid md:grid-cols-2 gap-6 opacity-0 transition">
 
-        <div class="mt-6 flex gap-4">
-          <a href="/" class="px-6 py-3 bg-gold-600 hover:bg-gold-700 text-white rounded-lg font-medium transition">
-            View Website
-          </a>
-        </div>
+        <a href="/admin/announcements"
+           class="p-6 rounded-2xl bg-gray-100 hover:bg-primary-100 transition shadow-md">
+          <h2 class="font-semibold text-lg mb-2">Announcements</h2>
+          <p class="text-sm text-gray-600">
+            Add, edit and publish parish announcements.
+          </p>
+        </a>
+
+        <a href="/admin/mass-timings"
+           class="p-6 rounded-2xl bg-gray-100 hover:bg-primary-100 transition shadow-md">
+          <h2 class="font-semibold text-lg mb-2">Mass Timings</h2>
+          <p class="text-sm text-gray-600">
+            Manage regular and feast-day Mass timings.
+          </p>
+        </a>
+
+        <a href="/admin/clergy"
+           class="p-6 rounded-2xl bg-gray-100 hover:bg-primary-100 transition shadow-md">
+          <h2 class="font-semibold text-lg mb-2">Clergy</h2>
+          <p class="text-sm text-gray-600">
+            Update priests, bio and profile images.
+          </p>
+        </a>
+
+        <a href="/admin/pages"
+           class="p-6 rounded-2xl bg-gray-100 hover:bg-primary-100 transition shadow-md">
+          <h2 class="font-semibold text-lg mb-2">Static Pages</h2>
+          <p class="text-sm text-gray-600">
+            Edit website page content.
+          </p>
+        </a>
+
       </div>
+
     </div>
-  </body>
-</html>
+
+  </section>
+
+  <script type="module" define:vars={{ supabaseUrl, supabaseAnonKey }}>
+    import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+    const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+    const logoutBtn = document.getElementById("logoutBtn");
+    const roleText = document.getElementById("roleText");
+    const contentArea = document.getElementById("contentArea");
+
+    // Check session
+    const { data: { session } } = await supabase.auth.getSession();
+
+    if (!session) {
+      window.location.href = "/admin/login";
+    } else {
+      logoutBtn.classList.remove("hidden");
+      contentArea.classList.remove("opacity-0");
+
+      // Fetch role
+      const { data: roleData } = await supabase
+        .from("user_roles")
+        .select("role")
+        .eq("id", session.user.id)
+        .single();
+
+      roleText.textContent =
+        roleData?.role === "super_admin"
+          ? "Super Administrator"
+          : "Editor";
+    }
+
+    logoutBtn?.addEventListener("click", async () => {
+      await supabase.auth.signOut();
+      window.location.href = "/admin/login";
+    });
+  </script>
+
+</AdminLayout>

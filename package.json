@@ -16,7 +16,7 @@
     "@astrojs/netlify": "^6.6.4",
     "@astrojs/react": "^4.4.2",
     "@astrojs/tailwind": "^5.1.2",
-    "@supabase/supabase-js": "^2.45.4",
+    "@supabase/supabase-js": "^2.95.3",
     "astro": "^5.17.2",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",

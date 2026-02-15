@@ -2,19 +2,17 @@
 import PublicLayout from "@layouts/PublicLayout.astro";
 ---
 
-<PublicLayout title="Announcements">
+<PublicLayout
+  title="Announcements"
+  description="Latest parish announcements, feast-day updates, catechism reminders, and official notices from St. Teresa of Kolkata Church, Paldane."
+>
   <!-- HERO -->
   <section class="relative min-h-[55vh] flex items-center justify-center overflow-hidden pt-28">
-    <!-- Premium gradient background (fallback until images are added) -->
     <div class="absolute inset-0 bg-gradient-to-br from-charcoal-950 via-charcoal-900 to-primary-900"></div>
-
-    <!-- Soft overlay -->
     <div class="absolute inset-0 bg-black/35"></div>
 
     <div class="relative z-10 max-w-5xl px-6 text-center">
-      <div
-        class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/10 border border-white/20 shadow-sm backdrop-blur mb-6"
-      >
+      <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/10 border border-white/20 shadow-sm backdrop-blur mb-6">
         <span class="w-2 h-2 rounded-full bg-primary-400"></span>
         <span class="text-sm font-medium text-white/90">
           Parish Updates
@@ -28,8 +26,7 @@ import PublicLayout from "@layouts/PublicLayout.astro";
       <div class="w-24 h-[2px] bg-white mx-auto mb-6 rounded-full"></div>
 
       <p class="text-white/85 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
-        Stay informed with parish notices, feast-day updates, community messages,
-        and important announcements.
+        Stay informed with official parish notices, feast-day updates, and important community messages.
       </p>
     </div>
   </section>
@@ -45,8 +42,8 @@ import PublicLayout from "@layouts/PublicLayout.astro";
         </h2>
 
         <p class="text-charcoal-700 leading-relaxed text-lg max-w-4xl">
-          Official parish announcements will be published here by the parish office.
-          This section will later support admin-added updates and event-based notices.
+          All official parish announcements are published here by the parish office.
+          Please check this section regularly for important updates.
         </p>
       </div>
 
@@ -71,7 +68,7 @@ import PublicLayout from "@layouts/PublicLayout.astro";
 
           <p class="text-charcoal-700 text-lg leading-relaxed max-w-5xl">
             All parish members are requested to participate in the preparations for the upcoming feast.
-            Further details will be shared by the parish office soon.
+            Further details will be shared by the parish office.
           </p>
         </div>
       </article>
@@ -83,7 +80,7 @@ import PublicLayout from "@layouts/PublicLayout.astro";
         <article class="rounded-3xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition overflow-hidden">
           <div class="p-10">
             <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
-              <span class="px-4 py-1 rounded-full text-sm bg-gold-50 text-gold-700 font-semibold border border-gold-100">
+              <span class="px-4 py-1 rounded-full text-sm bg-primary-50 text-primary-700 font-semibold border border-primary-100">
                 Special Notice
               </span>
 
@@ -120,11 +117,7 @@ import PublicLayout from "@layouts/PublicLayout.astro";
               Parish Office Contact Information
             </h3>
 
-            <p class="text-charcoal-700 text-lg leading-relaxed">
-              For any enquiries, you may contact the parish office at:
-            </p>
-
-            <div class="mt-5 space-y-2 text-charcoal-700 text-lg">
+            <div class="mt-4 space-y-2 text-charcoal-700 text-lg">
               <p><strong>Email:</strong> paldanebtkc@gmail.com</p>
               <p><strong>Phone:</strong> 0824-2272084 / 8277939391</p>
             </div>
@@ -141,7 +134,7 @@ import PublicLayout from "@layouts/PublicLayout.astro";
 
         <p class="text-charcoal-700 leading-relaxed text-lg max-w-5xl">
           For major feast days and special events, additional notices may also be shared on the parish notice board
-          and official WhatsApp groups.
+          and official communication channels.
         </p>
       </div>
 

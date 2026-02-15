@@ -8,16 +8,11 @@ import PublicLayout from "@layouts/PublicLayout.astro";
 >
   <!-- HERO -->
   <section class="relative min-h-[55vh] flex items-center justify-center overflow-hidden pt-28">
-    <!-- Gradient fallback background -->
     <div class="absolute inset-0 bg-gradient-to-br from-charcoal-950 via-charcoal-900 to-primary-900"></div>
-
-    <!-- Overlay -->
     <div class="absolute inset-0 bg-black/40"></div>
 
     <div class="relative z-10 max-w-5xl px-6 text-center">
-      <div
-        class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/10 border border-white/20 shadow-sm backdrop-blur mb-6"
-      >
+      <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/10 border border-white/20 shadow-sm backdrop-blur mb-6">
         <span class="w-2 h-2 rounded-full bg-primary-400"></span>
         <span class="text-sm font-medium text-white/90">
           Parish Office & Support
@@ -31,7 +26,7 @@ import PublicLayout from "@layouts/PublicLayout.astro";
       <div class="w-24 h-[2px] bg-white mx-auto mb-6 rounded-full"></div>
 
       <p class="text-white/85 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
-        Reach out to St. Teresa of Kolkata Church, Paldane for enquiries, parish updates,
+        Reach out to St. Teresa of Kolkata Church, Paldane for parish enquiries,
         Mass schedules, and community support.
       </p>
     </div>
@@ -48,8 +43,8 @@ import PublicLayout from "@layouts/PublicLayout.astro";
         </h2>
 
         <p class="text-charcoal-700 text-lg leading-relaxed max-w-4xl">
-          You may contact the parish office for sacramental enquiries, feast day updates,
-          catechism details, and general parish support.
+          You may contact the parish office for sacramental enquiries,
+          feast day updates, catechism details, and general parish support.
         </p>
       </div>
 
@@ -98,7 +93,7 @@ import PublicLayout from "@layouts/PublicLayout.astro";
           </p>
 
           <p class="text-charcoal-600 text-sm leading-relaxed">
-            Best for official enquiries and documents.
+            Best for official enquiries and documentation.
           </p>
         </div>
 
@@ -133,13 +128,14 @@ import PublicLayout from "@layouts/PublicLayout.astro";
             Parish Office Hours
           </h2>
 
-          <p class="text-charcoal-700 text-lg leading-relaxed mb-6">
-            Parish office timings will be updated here by the parish administration.
-          </p>
+          <div class="space-y-3 text-charcoal-700 text-lg">
+            <p><strong>Monday – Saturday:</strong> 9:00 AM – 12:30 PM</p>
+            <p><strong>Sunday:</strong> After Morning Mass</p>
+          </div>
 
-          <div class="rounded-2xl border border-gray-200 bg-white p-6">
+          <div class="mt-6 rounded-2xl border border-gray-200 bg-white p-6">
             <p class="text-charcoal-600 text-sm leading-relaxed">
-              <strong>Note:</strong> For urgent sacraments or emergencies, kindly contact the parish priest directly.
+              For urgent sacraments or emergencies, kindly contact the parish priest directly.
             </p>
           </div>
         </div>
@@ -152,7 +148,7 @@ import PublicLayout from "@layouts/PublicLayout.astro";
             </h2>
 
             <p class="text-charcoal-700 text-lg leading-relaxed mb-6">
-              For quick enquiries, you may contact the parish office through WhatsApp.
+              For quick enquiries, you may contact the parish office via WhatsApp.
             </p>
           </div>
 
@@ -160,7 +156,7 @@ import PublicLayout from "@layouts/PublicLayout.astro";
             href="https://wa.me/918277939391"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center justify-center px-8 py-4 rounded-full bg-green-600/90 text-white font-semibold shadow-md hover:bg-green-600 transition text-lg"
+            class="inline-flex items-center justify-center px-8 py-4 rounded-full bg-green-600 text-white font-semibold shadow-md hover:bg-green-700 transition text-lg"
           >
             Message on WhatsApp
           </a>
@@ -192,47 +188,6 @@ import PublicLayout from "@layouts/PublicLayout.astro";
             src="https://www.google.com/maps?q=St.%20Teresa%20of%20Kolkata%20Church%20Paldane&output=embed"
           ></iframe>
         </div>
-      </div>
-
-      <!-- QUICK SUPPORT CTA -->
-      <div class="rounded-3xl border border-gray-200 bg-gradient-to-br from-primary-50 to-white p-10 shadow-sm">
-        <h2 class="font-serif text-4xl font-bold text-charcoal-900 mb-4">
-          Need Help Quickly?
-        </h2>
-
-        <p class="text-charcoal-700 text-lg leading-relaxed mb-10 max-w-4xl">
-          For urgent parish matters, sacramental enquiries, or feast-related information,
-          please contact the parish office directly.
-        </p>
-
-        <div class="flex flex-col sm:flex-row gap-4">
-          <a
-            href="tel:+918277939391"
-            class="inline-flex items-center justify-center px-10 py-4 rounded-full bg-primary-600 hover:bg-primary-700 text-white font-semibold shadow-md transition text-lg"
-          >
-            Call Parish Office
-          </a>
-
-          <a
-            href="https://wa.me/918277939391"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center justify-center px-10 py-4 rounded-full bg-green-600 hover:bg-green-700 text-white font-semibold shadow-md transition text-lg"
-          >
-            WhatsApp Message
-          </a>
-
-          <a
-            href="mailto:paldanebtkc@gmail.com"
-            class="inline-flex items-center justify-center px-10 py-4 rounded-full bg-gray-900 hover:bg-gray-800 text-white font-semibold shadow-md transition text-lg"
-          >
-            Send Email
-          </a>
-        </div>
-
-        <p class="mt-8 text-sm text-charcoal-500 leading-relaxed">
-          Office response time may vary depending on parish activities.
-        </p>
       </div>
 
     </div>
