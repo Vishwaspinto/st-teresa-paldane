@@ -1,0 +1,73 @@
+---
+export const prerender = false;
+
+import PublicLayout from "@layouts/PublicLayout.astro";
+import { createClient } from "@supabase/supabase-js";
+
+const { slug } = Astro.params;
+
+const supabase = createClient(
+  import.meta.env.PUBLIC_SUPABASE_URL,
+  import.meta.env.PUBLIC_SUPABASE_ANON_KEY
+);
+
+// Fetch single published announcement
+const { data: announcement, error } = await supabase
+  .from("announcements")
+  .select("*")
+  .eq("slug", slug)
+  .eq("is_published", true)
+  .is("deleted_at", null)
+  .maybeSingle();
+
+// Redirect if not found
+if (!announcement || error) {
+  return Astro.redirect("/announcements");
+}
+
+// Clean description for SEO (remove line breaks + limit length)
+const cleanDescription = announcement.content
+  ?.replace(/\n/g, " ")
+  ?.slice(0, 160);
+---
+
+<PublicLayout
+  title={announcement.title}
+  description={cleanDescription}
+>
+  <section class="pt-36 pb-24 bg-white min-h-screen">
+    <div class="container mx-auto px-4 max-w-4xl">
+
+      <!-- Back Button -->
+      <div class="mb-10">
+        <a
+          href="/announcements"
+          class="text-primary-600 hover:underline text-sm"
+        >
+          ← Back to Announcements
+        </a>
+      </div>
+
+      <!-- Title -->
+      <h1 class="font-serif text-4xl md:text-5xl font-bold text-charcoal-900 mb-4">
+        {announcement.title}
+      </h1>
+
+      <!-- Published Date -->
+      <p class="text-sm text-charcoal-500 mb-10">
+        Published: {new Date(announcement.created_at).toLocaleDateString()}
+      </p>
+
+      <!-- Content (Auto Paragraph Formatting) -->
+      <div class="prose prose-lg max-w-none text-charcoal-800 space-y-4">
+        {
+          announcement.content
+            ?.split("\n")
+            .filter(line => line.trim() !== "")
+            .map(line => <p>{line}</p>)
+        }
+      </div>
+
+    </div>
+  </section>
+</PublicLayout>

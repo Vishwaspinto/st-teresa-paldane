@@ -1,11 +1,46 @@
 ---
 import PublicLayout from "@layouts/PublicLayout.astro";
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient(
+  import.meta.env.PUBLIC_SUPABASE_URL,
+  import.meta.env.PUBLIC_SUPABASE_ANON_KEY
+);
+
+// Fetch published announcements
+const { data, error } = await supabase
+  .from("announcements")
+  .select("*")
+  .eq("is_published", true)
+  .is("deleted_at", null)
+  .order("created_at", { ascending: false });
+
+const announcements = data ?? [];
+
+// Separate featured announcement
+const featured = announcements.find(a => a.is_featured) ?? null;
+const others = announcements.filter(a => !a.is_featured);
+
+// Helper: format date safely
+const formatDate = (date) =>
+  new Date(date).toLocaleDateString("en-IN", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric"
+  });
+
+// Helper: create excerpt
+const excerpt = (text, length = 200) => {
+  if (!text) return "";
+  return text.length > length ? text.slice(0, length) + "..." : text;
+};
 ---
 
 <PublicLayout
   title="Announcements"
   description="Latest parish announcements, feast-day updates, catechism reminders, and official notices from St. Teresa of Kolkata Church, Paldane."
 >
+
   <!-- HERO -->
   <section class="relative min-h-[55vh] flex items-center justify-center overflow-hidden pt-28">
     <div class="absolute inset-0 bg-gradient-to-br from-charcoal-950 via-charcoal-900 to-primary-900"></div>
@@ -47,84 +82,77 @@ import PublicLayout from "@layouts/PublicLayout.astro";
         </p>
       </div>
 
-      <!-- PINNED ANNOUNCEMENT -->
-      <article
-        class="rounded-3xl border border-primary-200 bg-gradient-to-br from-primary-50 to-white shadow-sm hover:shadow-md transition overflow-hidden mb-10"
-      >
-        <div class="p-10">
-          <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
-            <span class="px-4 py-1 rounded-full text-sm bg-primary-600 text-white font-semibold shadow-sm">
-              📌 Pinned Announcement
-            </span>
+      <!-- FEATURED ANNOUNCEMENT -->
+      {featured && (
+        <article class="rounded-3xl border border-primary-200 bg-gradient-to-br from-primary-50 to-white shadow-sm hover:shadow-md transition overflow-hidden mb-12">
+          <div class="p-10">
+            <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+              <span class="px-4 py-1 rounded-full text-sm bg-primary-600 text-white font-semibold shadow-sm">
+                📌 Featured Announcement
+              </span>
 
-            <span class="text-sm text-charcoal-500">
-              Published: 02 Feb 2026
-            </span>
+              <span class="text-sm text-charcoal-500">
+                Published: {formatDate(featured.created_at)}
+              </span>
+            </div>
+
+            <h3 class="font-serif text-4xl font-bold text-charcoal-900 mb-4">
+              <a href={`/announcements/${featured.slug}`} class="hover:text-primary-600 transition">
+                {featured.title}
+              </a>
+            </h3>
+
+            <p class="text-charcoal-700 text-lg leading-relaxed whitespace-pre-line">
+              {excerpt(featured.content, 350)}
+            </p>
+
+            <a
+              href={`/announcements/${featured.slug}`}
+              class="mt-6 inline-block text-primary-600 font-semibold hover:underline"
+            >
+              Read Full Announcement →
+            </a>
           </div>
-
-          <h3 class="font-serif text-4xl font-bold text-charcoal-900 mb-4">
-            Upcoming Parish Feast Preparation
-          </h3>
-
-          <p class="text-charcoal-700 text-lg leading-relaxed max-w-5xl">
-            All parish members are requested to participate in the preparations for the upcoming feast.
-            Further details will be shared by the parish office.
-          </p>
-        </div>
-      </article>
+        </article>
+      )}
 
       <!-- ANNOUNCEMENTS LIST -->
-      <div class="grid gap-8">
+      {others.length > 0 ? (
+        <div class="grid gap-8">
+          {others.map((item) => (
+            <article class="rounded-3xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition overflow-hidden">
+              <div class="p-10">
 
-        <!-- Announcement Card -->
-        <article class="rounded-3xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition overflow-hidden">
-          <div class="p-10">
-            <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
-              <span class="px-4 py-1 rounded-full text-sm bg-primary-50 text-primary-700 font-semibold border border-primary-100">
-                Special Notice
-              </span>
+                <div class="text-sm text-charcoal-500 mb-4">
+                  Published: {formatDate(item.created_at)}
+                </div>
 
-              <span class="text-sm text-charcoal-500">
-                Published: 01 Feb 2026
-              </span>
-            </div>
+                <h3 class="font-serif text-3xl font-bold text-charcoal-900 mb-3">
+                  <a href={`/announcements/${item.slug}`} class="hover:text-primary-600 transition">
+                    {item.title}
+                  </a>
+                </h3>
 
-            <h3 class="font-serif text-3xl font-bold text-charcoal-900 mb-3">
-              Catechism Reminder
-            </h3>
+                <p class="text-charcoal-700 text-lg leading-relaxed line-clamp-3 whitespace-pre-line">
+                  {excerpt(item.content)}
+                </p>
 
-            <p class="text-charcoal-700 text-lg leading-relaxed">
-              Catechism classes are held every Sunday at <strong>8:30 AM</strong>.
-              Parents are requested to ensure children attend regularly.
-            </p>
-          </div>
-        </article>
+                <a
+                  href={`/announcements/${item.slug}`}
+                  class="mt-6 inline-block text-primary-600 font-semibold hover:underline"
+                >
+                  Read More →
+                </a>
 
-        <!-- Announcement Card -->
-        <article class="rounded-3xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition overflow-hidden">
-          <div class="p-10">
-            <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
-              <span class="px-4 py-1 rounded-full text-sm bg-primary-50 text-primary-700 font-semibold border border-primary-100">
-                Community Message
-              </span>
-
-              <span class="text-sm text-charcoal-500">
-                Published: 28 Jan 2026
-              </span>
-            </div>
-
-            <h3 class="font-serif text-3xl font-bold text-charcoal-900 mb-3">
-              Parish Office Contact Information
-            </h3>
-
-            <div class="mt-4 space-y-2 text-charcoal-700 text-lg">
-              <p><strong>Email:</strong> paldanebtkc@gmail.com</p>
-              <p><strong>Phone:</strong> 0824-2272084 / 8277939391</p>
-            </div>
-          </div>
-        </article>
-
-      </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <div class="text-center py-20 text-charcoal-500">
+          No announcements published yet.
+        </div>
+      )}
 
       <!-- FOOTNOTE -->
       <div class="mt-16 rounded-3xl border border-gray-200 bg-gray-50 p-10 shadow-sm">
@@ -140,4 +168,5 @@ import PublicLayout from "@layouts/PublicLayout.astro";
 
     </div>
   </section>
+
 </PublicLayout>
